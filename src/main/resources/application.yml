@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: @spring.active@
+  jpa:
+    #    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:nodedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: root
+    password: root
+    platform: h2
+    driver-class-name: org.h2.Driver
+
+h2:
+  console:
+    enabled: true
+    path: /console
+    settings:
+      trace: false
+      web-allow-others: true
+
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
