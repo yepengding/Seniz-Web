@@ -25,11 +25,12 @@ public class CompileController {
         }
         org.veritasopher.seniz.controller.CompileController compileController = new org.veritasopher.seniz.controller.CompileController();
         try {
-            compileController.compile(content);
-            TransitionSystem ts = compileController.getHighestTS();
-            DOTGenerator dotGenerator = new DOTGenerator(ts);
-            String dotProgram = dotGenerator.generateAsString();
-
+            TransitionSystem ts = compileController.compile(content);
+            String dotProgram = "digraph { }";
+            if (ts != null) {
+                DOTGenerator dotGenerator = new DOTGenerator(ts);
+                dotProgram = dotGenerator.generateAsString();
+            }
             return Response.success("ok", dotProgram);
         } catch (Exception e) {
             String failureMsg = e.getMessage();
