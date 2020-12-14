@@ -1,5 +1,6 @@
 # Seniz-Web
-Seniz web service to support [Seniz GUI](https://github.com/yepengding/Seniz-GUI).
+Seniz web service to support [Seniz GUI](https://github.com/yepengding/Seniz-GUI). \
+This project integrates [Seniz](https://github.com/yepengding/Seniz).
 
 ## Compile Command
 ### Production
