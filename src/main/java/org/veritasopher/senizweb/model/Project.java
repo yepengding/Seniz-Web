@@ -3,7 +3,6 @@ package org.veritasopher.senizweb.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "project")
@@ -14,10 +13,10 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "desc")
     private String description;
-
-//    @OneToMany(mappedBy="project")
-//    private Set<ProjectFile> projectFiles;
 
 }
