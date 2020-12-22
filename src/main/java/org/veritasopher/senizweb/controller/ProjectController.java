@@ -27,9 +27,20 @@ public class ProjectController {
         return projectOptional.map((p) -> Response.failure("Project exists.")).orElseGet(() -> Response.success(projectService.create(project)));
     }
 
+    @GetMapping("/get/{projectId}")
+    public Response getProject(@PathVariable("projectId") Long projectId) {
+        Optional<Project> projectOptional = projectService.findById(projectId);
+        return projectOptional.map(Response::success).orElseGet(() -> Response.failure("No such project."));
+    }
+
     @GetMapping("/list")
     public Response getProjectList() {
         return Response.success(projectService.findAllProject());
+    }
+
+    @GetMapping("/{projectId}/files")
+    public Response getFileList(@PathVariable("projectId") Long projectId) {
+        return Response.success(projectService.findFileByProjectId(projectId));
     }
 
 }

@@ -33,6 +33,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public Optional<Project> findById(Long id) {
+        return projectRepository.findById(id);
+    }
+
+    @Override
     public Optional<Project> findByName(String name) {
         return projectRepository.findByName(name);
     }

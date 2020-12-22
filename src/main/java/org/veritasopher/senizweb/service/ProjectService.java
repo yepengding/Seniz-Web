@@ -16,6 +16,8 @@ public interface ProjectService {
 
     Project create(Project project);
 
+    Optional<Project> findById(Long id);
+
     Optional<Project> findByName(String name);
 
     List<Project> findAllProject();
