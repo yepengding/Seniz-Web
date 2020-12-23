@@ -1,5 +1,6 @@
 package org.veritasopher.senizweb.service;
 
+import org.veritasopher.seniz.core.model.SourceFile;
 import org.veritasopher.senizweb.model.Project;
 import org.veritasopher.senizweb.model.ProjectFile;
 
@@ -23,5 +24,7 @@ public interface ProjectService {
     List<Project> findAllProject();
 
     List<ProjectFile> findFileByProjectId(Long projectId);
+
+    List<SourceFile> findSourceFileByProjectId(Long projectId);
 
 }

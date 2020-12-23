@@ -1,6 +1,8 @@
 package org.veritasopher.senizweb.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.veritasopher.seniz.config.Info;
+import org.veritasopher.seniz.core.model.SourceFile;
 import org.veritasopher.senizweb.model.Project;
 import org.veritasopher.senizweb.model.ProjectFile;
 import org.veritasopher.senizweb.repository.ProjectFileRepository;
@@ -10,6 +12,7 @@ import org.veritasopher.senizweb.service.ProjectService;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Project Service Implementation
@@ -50,5 +53,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<ProjectFile> findFileByProjectId(Long projectId) {
         return projectFileRepository.findByProjectId(projectId);
+    }
+
+    @Override
+    public List<SourceFile> findSourceFileByProjectId(Long projectId) {
+        List<ProjectFile> projectFiles = projectFileRepository.findByProjectId(projectId);
+        return projectFiles.stream()
+                .filter(file -> file.getName().endsWith(Info.SUFFIX))
+                .map(file -> new SourceFile(file.getName(), file.getContent())).collect(Collectors.toList());
     }
 }

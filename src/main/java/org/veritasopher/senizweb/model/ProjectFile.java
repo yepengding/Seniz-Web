@@ -25,6 +25,7 @@ public class ProjectFile {
     @Column(name = "size")
     private Long size;
 
+    @Lob
     @Column(name = "content")
     private String content;
 

@@ -1,10 +1,12 @@
 package org.veritasopher.senizweb.core.exception;
 
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.veritasopher.senizweb.core.dictionary.ResponseCode;
 import org.veritasopher.senizweb.core.response.Response;
 
 /**
@@ -20,6 +22,13 @@ public class SystemExceptionHandler {
     public Response systemExceptionHandler(SystemException e) {
         logger.error(e.getMessage());
         return Response.failure(e.getCode(), e.getMessage());
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = ParseCancellationException.class)
+    public Response parsingExceptionHandler(ParseCancellationException e) {
+        logger.error(e.getMessage());
+        return Response.failure(ResponseCode.FAILURE, e.getMessage());
     }
 
     @ResponseBody
